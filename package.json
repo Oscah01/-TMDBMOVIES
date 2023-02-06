@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/Oscah01/javascript-capstone/issues"
   },
-  "homepage": "https://github.com/Oscah01/javascript-capstone#readme"
+  "homepage": "https://github.com/Oscah01/javascript-capstone#readme",
+  "dependencies": {
+    "css": "^3.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "loader": "^2.1.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
 }
