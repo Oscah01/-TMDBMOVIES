@@ -1,35 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javascript Capstone</title>
-<script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
-<body>
-        <header>
-            <form id="form">
-              <input type="" id="search" class="search" placeholder="Search Movie">
-            </form>
-          </header>
-      
-          <main id="main"></main>
-      
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Movie Application</title>
+  <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
+  <body>
+    <header>
         <div class="list">
             <ul class="logo">
-                 <li>Logo</li>
-             </ul> 
-           <ul class="lists">
-              <li>Trending movies</li>
-              <li>New Movies</li>
-              <li>Tv shows</li>
-           </ul>
-        </div>
-        <footer>
-          <p class="footer-text">Copyright &copy; 2023 | Right reserved | 
-            <a href="https://github.com/Oscah01" target="_blank">Oscar</a> &
-            <a href="https://github.com/Ouail-01" target="_blank">Ouail</a> 
-          </p>
-        </footer>
-</body>
+              <li>Logo</li>
+            </ul>
+            <ul class="lists">
+              <li class="trending">Trending movies</li>
+              <li class="new">New Movies</li>
+              <li class="tv">Tv shows</li>
+            </ul>
+          </div>
+      <form id="form">
+        <input type="text" id="search" class="search" placeholder="Search">
+      </form>
+
+    </header>
+
+    <main id="main"></main>
+
+    <script src="index.js"></script>
+  </body>
 </html>
