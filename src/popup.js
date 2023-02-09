@@ -21,7 +21,7 @@ const popupShow = (object) => {
     <div class="pop--img">
       <img src="${imgPop}" alt="${object.title} img">
       <div id = "show-comm">
-        <h3>comments : </h3>
+        <h3 class="comment-cnt">comments : </h3>
       </div>
     </div>
     <div class = "movie-summary">
@@ -33,7 +33,7 @@ const popupShow = (object) => {
       <h4 class="popupVoCnt">Vote count : ${object.vote_count}</h4><hr>
       <h4 class="popupPopula">Movie popularity : ${object.popularity}</h4>
       <div class="comment">
-        <h3>Add a comment :</h3>
+        <h3>Add a comment : </h3>
         <input id= "name-input" type="text" placeholder="Your name" required>
         <input id= "insights-input" type="text" placeholder="Your insights" required>
         
@@ -60,6 +60,8 @@ const popupShow = (object) => {
     await addComment(object.id, usernameInput.value, commentInput.value);
     const result = await getComments(object.id);
 
+    const Counter = document.querySelector('.comment-cnt');
+    Counter.innerHTML += `(${result.length})`;
 
 
     divComPar.innerHTML += `Date : ${newDate()} <br> 
