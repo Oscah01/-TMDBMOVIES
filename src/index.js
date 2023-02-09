@@ -1,4 +1,5 @@
 import './style.css';
+import popupShow from './popup';
 const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c4663d1ba381b00aac6874230f49f551&page=2'
 const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
 const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=c4663d1ba381b00aac6874230f49f551&query="'
@@ -21,7 +22,7 @@ async function getMovies(url) {
 
 function showMovies(movies) {
     main.innerHTML = ''
-
+    console.log(IMG_PATH + movies[0].poster_path);
     movies.forEach((movie) => {
         const { title, poster_path, vote_average, overview, heart1,animationHeart1, button } = movie
 
@@ -40,13 +41,22 @@ function showMovies(movies) {
           <div class="heart"></div>
           <div class="animationHeart"></div>
           <div class="button">
-          <button>comments</button>
+          <button class="movie-btn">comments</button>
           </div>
 
         `
        
         main.appendChild(movieEl)
-    })
+
+       
+    });
+    document.querySelectorAll('.movie-btn').forEach((cardBtn, i) => {
+        cardBtn.addEventListener('click', async () => {
+          const popupContainer = document.querySelector('.popup');
+          popupContainer.classList.add('active');
+          popupShow(movies[i]);
+        });
+      });
     
 }
 
@@ -73,4 +83,7 @@ form.addEventListener('submit', (e) => {
         window.location.reload()
     }
 })
+
+
+export {getMovies, IMG_PATH};
 
