@@ -352,6 +352,10 @@ button:hover {
   display: flex;
 }
 
+.pop--img {
+  margin: auto;
+}
+
 .popup-card img {
   height: 500px;
   margin-left: 0px;
