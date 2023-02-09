@@ -1,17 +1,13 @@
 import './style.css';
-<<<<<<< HEAD
+import popupShow from './popup';
+
 const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c4663d1ba381b00aac6874230f49f551&page=3';
 const APP_ID = 'r5rxF20VmKmZGxe859n1';
 const LIKES_URL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${APP_ID}/likes/`
 const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
 const SEARCH_API =
   'https://api.themoviedb.org/3/search/movie?api_key=c4663d1ba381b00aac6874230f49f551&query="';
-=======
-import popupShow from './popup';
-const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c4663d1ba381b00aac6874230f49f551&page=2'
-const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
-const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=c4663d1ba381b00aac6874230f49f551&query="'
->>>>>>> comment-popup-ouail
+
 
 const main = document.getElementById('main');
 const form = document.getElementById('form');
@@ -26,7 +22,6 @@ async function getMovies(url) {
   showMovies(data.results);
 }
 
-<<<<<<< HEAD
 const postLikes = async (movieID) => {
   const likeTarget = document.getElementById(`${movieID}`);
   const likesNumber = likeTarget.nextSibling.nextSibling;
@@ -48,13 +43,6 @@ async function fetchLikes() {
   const data = await res.json();
   return data;
 }
-=======
-function showMovies(movies) {
-    main.innerHTML = ''
-    console.log(IMG_PATH + movies[0].poster_path);
-    movies.forEach((movie) => {
-        const { title, poster_path, vote_average, overview, heart1,animationHeart1, button } = movie
->>>>>>> comment-popup-ouail
 
 
 
@@ -90,7 +78,6 @@ async function showMovies(movies) {
     const heart = movieEl.querySelector('.heart');
     const animationHeart = movieEl.querySelector('.animationHeart');
 
-<<<<<<< HEAD
     heart.addEventListener('click', (e) => {
        postLikes(e.target.id);
       animationHeart.classList.add('animation');
@@ -110,22 +97,17 @@ async function showMovies(movies) {
 
     main.appendChild(movieEl);
   });
-=======
-        `
+        
        
-        main.appendChild(movieEl)
 
-       
-    });
     document.querySelectorAll('.movie-btn').forEach((cardBtn, i) => {
         cardBtn.addEventListener('click', async () => {
           const popupContainer = document.querySelector('.popup');
           popupContainer.classList.add('active');
           popupShow(movies[i]);
         });
-      });
+    });
     
->>>>>>> comment-popup-ouail
 }
 
 function getClassByRate(vote) {
@@ -146,14 +128,11 @@ form.addEventListener('submit', (e) => {
   if (searchTerm && searchTerm !== '') {
     getMovies(SEARCH_API + searchTerm);
 
-<<<<<<< HEAD
     search.value = '';
   } else {
     window.location.reload();
   }
 });
-=======
 
 export {getMovies, IMG_PATH};
 
->>>>>>> comment-popup-ouail
