@@ -1,34 +1,61 @@
 import './style.css';
-const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c4663d1ba381b00aac6874230f49f551&page=2'
-const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
-const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=c4663d1ba381b00aac6874230f49f551&query="'
+const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c4663d1ba381b00aac6874230f49f551&page=3';
+const APP_ID = 'r5rxF20VmKmZGxe859n1';
+const LIKES_URL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${APP_ID}/likes/`
+const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
+const SEARCH_API =
+  'https://api.themoviedb.org/3/search/movie?api_key=c4663d1ba381b00aac6874230f49f551&query="';
 
-const main = document.getElementById('main')
-const form = document.getElementById('form')
-const search = document.getElementById('search')
-
-
+const main = document.getElementById('main');
+const form = document.getElementById('form');
+const search = document.getElementById('search');
 
 // Get initial movies
-getMovies(API_URL)
+getMovies(API_URL);
 
 async function getMovies(url) {
-    const res = await fetch(url)
-    const data = await res.json()
+  const res = await fetch(url);
+  const data = await res.json();
 
-    showMovies(data.results)
+  showMovies(data.results);
 }
 
-function showMovies(movies) {
-    main.innerHTML = ''
+const postLikes = async (movieID) => {
+  const likeTarget = document.getElementById(`${movieID}`);
+  const likesNumber = likeTarget.nextSibling.nextSibling;
+  likesNumber.textContent = +likesNumber.textContent + 1;
+  await fetch(LIKES_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      item_id: `${movieID}`,
+    }),
+  });
+  return;
+};
 
-    movies.forEach((movie) => {
-        const { title, poster_path, vote_average, overview, heart1,animationHeart1, button } = movie
+async function fetchLikes() {
+  const res = await fetch(LIKES_URL);
+  const data = await res.json();
+  return data;
+}
 
-        const movieEl = document.createElement('div')
-        movieEl.classList.add('movie')
 
-        movieEl.innerHTML = `
+
+async function showMovies(movies) {
+  const likes = await fetchLikes();
+  main.innerHTML = '';
+
+  movies.forEach((movie) => {
+    const like = likes.find((l) => l.item_id == movie.id);
+    const { title, poster_path, vote_average, overview } = movie;
+
+    const movieEl = document.createElement('div');
+    movieEl.classList.add('movie');
+
+    movieEl.innerHTML = `
             <img src="${IMG_PATH + poster_path}" alt="${title}">
             <div class="movie-info">
           <h3>${title}</h3>
@@ -37,40 +64,59 @@ function showMovies(movies) {
             <div class="overview">
           <h3>Overview</h3>
           ${overview}
-          <div class="heart"></div>
+          <div class="likes">
+          <div id=${movie.id} class="heart"></div>
+          <p class="likes-number"> ${ like ? like.likes : 0}</p>
           <div class="animationHeart"></div>
+          </div>
           <div class="button">
           <button>comments</button>
           </div>
+        `;
+    const heart = movieEl.querySelector('.heart');
+    const animationHeart = movieEl.querySelector('.animationHeart');
 
-        `
-       
-        main.appendChild(movieEl)
-    })
-    
+    heart.addEventListener('click', (e) => {
+       postLikes(e.target.id);
+      animationHeart.classList.add('animation');
+      heart.classList.add('fill-color');
+
+      animationHeart.addEventListener('animationend', () => {
+        animationHeart.classList.remove('animation');
+        heart.classList.remove('fill-color');
+      });
+    });
+
+    //   animationHeart.addEventListener('click',() => {
+    //     animationHeart.classList.remove
+    //     ('animation')
+    //     heart.classList.remove('fill-color');
+    //   })
+
+    main.appendChild(movieEl);
+  });
 }
 
 function getClassByRate(vote) {
-    if(vote >= 8) {
-        return 'green'
-    } else if(vote >= 5) {
-        return 'orange'
-    } else {
-        return 'red'
-    }
+  if (vote >= 8) {
+    return 'green';
+  } else if (vote >= 5) {
+    return 'orange';
+  } else {
+    return 'red';
+  }
 }
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault()
+  e.preventDefault();
 
-    const searchTerm = search.value
+  const searchTerm = search.value;
 
-    if(searchTerm && searchTerm !== '') {
-        getMovies(SEARCH_API + searchTerm)
+  if (searchTerm && searchTerm !== '') {
+    getMovies(SEARCH_API + searchTerm);
 
-        search.value = ''
-    } else {
-        window.location.reload()
-    }
-})
-
+    search.value = '';
+  } else {
+    window.location.reload();
+  }
+});

@@ -158,10 +158,7 @@ main {
     background: #3accfd;
     border-radius: 8px;
   }
-  .like,.dislike{
-    display: grid;
-    place-items : center;
-  }
+  
   .icon{
     margin: 0 1px 15px 8px;
     font-size: 20px;
@@ -234,7 +231,7 @@ main {
     border-radius: 50%;
   }
   
-  .animation-heart {
+  .animationHeart {
     position:absolute;
     display:flex;
     justify-content: center;
@@ -248,11 +245,11 @@ main {
     visibility: hidden;
   }
   
-  .animation-heart.animation {
+  .animationHeart.animation {
     animation:popup .8s linear;
     visibility: visible;
   }
-  .animation-heart::after {
+  .animationHeart::after {
     position: absolute;
     content: "";
     height:100%;
@@ -264,7 +261,7 @@ main {
   
   }
   
-  .animation-heart::before {
+  .animationHeart::before {
     position: absolute;
     content: "";
     height:100%;
@@ -284,7 +281,12 @@ main {
     font-size: 18px;
     
   }
-  
+
+ 
+  .likes-number{
+    margin-top: 20px;
+  }
+
   @keyframes popup {
     100% {
       transform: scale(1.5) rotate(-45deg);
