@@ -1,6 +1,11 @@
 import { IMG_PATH } from "./index.js";
 import { addComment, getComments } from "./comment-api.js";
 
+const newDate = () => {
+  const date = new Date();
+  return date.toISOString().split('T')[0];
+};
+
 const popupShow = (object) => {
     const popupCard = document.createElement('li');
     const container = document.querySelector('.popup');
@@ -15,7 +20,9 @@ const popupShow = (object) => {
     </div>
     <div class="pop--img">
       <img src="${imgPop}" alt="${object.title} img">
-      <h3>comments : </h3>
+      <div id = "show-comm">
+        <h3>comments : </h3>
+      </div>
     </div>
     <div class = "movie-summary">
       <h1 class="popupTitle">${object.title}</h1><br>
@@ -46,12 +53,21 @@ const popupShow = (object) => {
   const SubmitButton = document.getElementById('comment-btn');
   const usernameInput = document.getElementById('name-input');
   const commentInput = document.getElementById('insights-input');
+  const divComPar = document.getElementById('show-comm');
 
   SubmitButton.addEventListener('click', async (event) => {
     event.preventDefault();
     await addComment(object.id, usernameInput.value, commentInput.value);
     const result = await getComments(object.id);
-    console.log("done");
+
+
+
+    divComPar.innerHTML += `Date : ${newDate()} <br> 
+    Name : ${usernameInput.value}<br> 
+    Insights : ${commentInput.value}<hr>
+    `;
+
+
 
   });
 }

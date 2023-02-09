@@ -504,7 +504,7 @@ button:hover {
 .comment input {
   width: 60%;
   margin: auto;
-  padding: 2px;
+  padding: 4px;
   border-radius: 10px;
   font-size: 15px;
   color: #000;
