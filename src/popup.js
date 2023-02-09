@@ -21,7 +21,9 @@ const popupShow = (object) => {
     <div class="pop--img">
       <img src="${imgPop}" alt="${object.title} img">
       <div id = "show-comm">
-        <h3 class="comment-cnt">comments : </h3>
+        
+        <h3>comments : </h3>
+        <p class="comment-cnt"></p>
       </div>
     </div>
     <div class = "movie-summary">
@@ -57,18 +59,24 @@ const popupShow = (object) => {
 
   SubmitButton.addEventListener('click', async (event) => {
     event.preventDefault();
-    await addComment(object.id, usernameInput.value, commentInput.value);
-    const result = await getComments(object.id);
 
-    const Counter = document.querySelector('.comment-cnt');
-    Counter.innerHTML += `(${result.length})`;
+    if(usernameInput.value =='' || commentInput.value == ''){
+      usernameInput.placeholder = 'Please Fill your name';
+      commentInput.placeholder = 'Please Fill your insight';
+    }else {
+      divComPar.innerHTML += `Date : ${newDate()} <br> 
+      Name : ${usernameInput.value}<br> 
+      Insights : ${commentInput.value}<hr>
+      `;
 
 
-    divComPar.innerHTML += `Date : ${newDate()} <br> 
-    Name : ${usernameInput.value}<br> 
-    Insights : ${commentInput.value}<hr>
-    `;
+      await addComment(object.id, usernameInput.value, commentInput.value);
+      const result = await getComments(object.id);
+      const Counter = document.querySelector('.comment-cnt');
+      Counter.innerHTML = `(${result.length})`;
 
+      //console.log(result);
+    }
 
 
   });

@@ -107,10 +107,6 @@ async function showMovies(movies) {
           popupShow(movies[i]);
 
 
-            const moviee = await getComments(movies[i].id);
-            ShowComment(moviee);
-
-
         });
     });
     

@@ -16,7 +16,12 @@ export const addComment = async (id, user, comment) => {
             }),
         });
 };
-
+export const CommentCounter = (comment) => {
+  if (comment.length) {
+    const CounterCom = document.querySelector('.count--com');
+    CounterCom.innerHTML += `Comments (${comment.length})`;
+  }
+};
 
 export const getComments = async (incomingItemId) => {
     const request = await fetch(`${URL}${commentsUrl}?item_id=${incomingItemId}`);
