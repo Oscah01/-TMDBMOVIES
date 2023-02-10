@@ -334,11 +334,12 @@ footer {
   width: 100%;
   text-align: center;
   background: #fff;
-}  
+}
 
 .footer-text {
   padding: 1rem;
 }
+
 @keyframes popup {
   100% {
     transform: scale(1.5) rotate(-45deg);
