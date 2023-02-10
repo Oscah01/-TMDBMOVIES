@@ -1,4 +1,4 @@
-import countComment from '../countComment';
+import countComment from '../countComment.js';
 
 describe('the number comments', () => {
   const comments = `<div id="show-comm"><h3>comments : (2)</h3> <hr>
