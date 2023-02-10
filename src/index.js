@@ -24,6 +24,7 @@ const postLikes = async (movieID) => {
     body: JSON.stringify({
       item_id: `${movieID}`,
     }),
+
   });
 };
 
@@ -45,9 +46,8 @@ function getClassByRate(vote) {
 async function showMovies(movies) {
   const likes = await fetchLikes();
   main.innerHTML = '';
-
   movies.forEach((movie) => {
-    const like = likes.find((l) => l.item_id === movie.id);
+    const like = likes.find((l) => +l.item_id === +movie.id);
     const {
       title, poster_path, vote_average, overview,
     } = movie;
