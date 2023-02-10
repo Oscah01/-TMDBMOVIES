@@ -54,7 +54,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> [Live Demo Link](/dist)
+> [Live Demo Link](https://oscah01.github.io/netflixmovies/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
