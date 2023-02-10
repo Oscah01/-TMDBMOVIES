@@ -24,6 +24,9 @@
 # 📖 [Javascript-capstone] <a name="about-project"></a>
 
 **[Javascript-capstone]**Welcome to the ultimate movie experience! Our movie website is the go-to destination for all cinephiles and film enthusiasts. The user-friendly interface allows you to easily browse through our library and select the movie of your choice. The detailed information provided on each movie page includes a description, voteaverage, release date, and movie popularity. But the real magic of our site is in the likes and comments section, where movie lovers from around the world come together to share their thoughts and opinions on their favorite films.
+
+> Here's a [video](https://drive.google.com/file/d/1XT7_yIiWnwD1p1SPDSXdYzEI13wzd1Ut/view) of me giving a few description of the project.
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
