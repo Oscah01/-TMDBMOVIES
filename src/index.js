@@ -92,6 +92,8 @@ async function showMovies(movies) {
     //     ('animation')
     //     heart.classList.remove('fill-color');
     //   })
+    const movieCount = document.getElementById('tmdb-count');
+    movieCount.innerHTML = `<li>Tv Shows (${movies.length})</li> <hr>`;
 
     main.appendChild(movieEl);
   });
