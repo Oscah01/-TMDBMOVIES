@@ -145,7 +145,6 @@ main {
 .movie:hover .overview {
   transform: translateY(0);
 }
-<<<<<<< HEAD
   .wrapper{
     gap: 70px;
     margin: 100px 15px;
@@ -169,7 +168,8 @@ main {
     color: rgb(246, 1, 42);
     transform: scale(1.2);
   }
-  input{
+  
+  #search {
     margin-top: -30px;
     margin-left: 6px;
     width: 100%;
@@ -270,7 +270,6 @@ main {
     border-radius: 50%;
   
   }
-=======
 .wrapper {
   gap: 70px;
   margin: 100px 15px;
@@ -298,7 +297,7 @@ main {
   color: rgb(246, 1, 42);
   transform: scale(1.2);
 }
-input {
+#search {
   margin-top: -30px;
   margin-left: 6px;
   width: 100%;
@@ -317,7 +316,6 @@ button:hover {
   background: #ba0015;
   transform: scale(1.05);
 }
->>>>>>> comment-popup-ouail
 
 .heart {
   padding: 6px;
@@ -422,27 +420,8 @@ button:hover {
   cursor: pointer;
   position: relative;
   left: 95%;
-}
-
-.burger div {
-  width: 25px;
-  height: 4px;
-  margin: 5px;
-  border-radius: 8px;
-}
-
-.burger .line:nth-child(2) {
-  opacity: 0;
-}
-
-.burger .line:nth-child(1) {
-  transform: translateY(12px) rotate(45deg);
-  background-color: #000;
-}
-
-.burger .line:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-  background-color: #000;
+  color: #000;
+  font-size: 25px;
 }
 
 .popup {
@@ -463,7 +442,8 @@ button:hover {
   background-color: #585d8c;
   transform: translate(-50%, -50%) scale(0);
   transition: 0.5s ease;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
 }
 
@@ -494,4 +474,30 @@ button:hover {
 
 .movie-summary {
   margin-left: 20px;
+}
+
+/* Comment */
+
+.comment {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment input {
+  width: 60%;
+  margin: auto;
+  padding: 4px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.comment button {
+  width: 25%;
+  margin: auto;
+  color: #000;
+  border-radius: 15px;
+  padding: 3px;
+  font-size: 20px;
 }

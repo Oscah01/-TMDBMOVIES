@@ -105,6 +105,8 @@ async function showMovies(movies) {
           const popupContainer = document.querySelector('.popup');
           popupContainer.classList.add('active');
           popupShow(movies[i]);
+
+
         });
     });
     
