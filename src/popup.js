@@ -1,10 +1,21 @@
 import { IMG_PATH } from "./index.js";
 import { addComment, getComments } from "./comment-api.js";
 
-const newDate = () => {
-  const date = new Date();
-  return date.toISOString().split('T')[0];
-};
+const showComment = async (id) => {
+  const result = await getComments(id);
+  const commentSection = document.getElementById('show-comm');
+
+  if (result.length > 0) {
+    commentSection.innerHTML = `<h3>comments : (${result.length})</h3> <hr>`;
+    result.forEach(element => {
+      commentSection.innerHTML += `
+      <p>* Date : ${element.creation_date} | ${element.username} Commented : ${element.comment}</p>
+    `;
+    });
+  } else {
+  commentSection.innerHTML = '<h3>comments : (0)</h3>';
+  }
+}  
 
 const popupShow = (object) => {
     const popupCard = document.createElement('li');
@@ -13,17 +24,12 @@ const popupShow = (object) => {
     const imgPop = IMG_PATH + object.poster_path;
     popupCard.classList.add('popup-card');
     popupCard.innerHTML = `
-    <div class="burger">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
+    <div class="burger">X</div>
     <div class="pop--img">
       <img src="${imgPop}" alt="${object.title} img">
+      
       <div id = "show-comm">
-        
-        <h3>comments : </h3>
-        <p class="comment-cnt"></p>
+      ${showComment(object.id)}
       </div>
     </div>
     <div class = "movie-summary">
@@ -37,7 +43,7 @@ const popupShow = (object) => {
       <div class="comment">
         <h3>Add a comment : </h3>
         <input id= "name-input" type="text" placeholder="Your name" required>
-        <input id= "insights-input" type="text" placeholder="Your insights" required>
+        <input id= "insights-input" type="text" placeholder="Your comment" required>
         
         <button type="button" id="comment-btn">Comment</button>
       </div>
@@ -55,27 +61,18 @@ const popupShow = (object) => {
   const SubmitButton = document.getElementById('comment-btn');
   const usernameInput = document.getElementById('name-input');
   const commentInput = document.getElementById('insights-input');
-  const divComPar = document.getElementById('show-comm');
 
   SubmitButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
     if(usernameInput.value =='' || commentInput.value == ''){
-      usernameInput.placeholder = 'Please Fill your name';
-      commentInput.placeholder = 'Please Fill your insight';
+      usernameInput.placeholder = 'Please fill your name';
+      commentInput.placeholder = 'Please add your comment';
     }else {
-      divComPar.innerHTML += `Date : ${newDate()} <br> 
-      Name : ${usernameInput.value}<br> 
-      Insights : ${commentInput.value}<hr>
-      `;
-
-
       await addComment(object.id, usernameInput.value, commentInput.value);
-      const result = await getComments(object.id);
-      const Counter = document.querySelector('.comment-cnt');
-      Counter.innerHTML = `(${result.length})`;
-
-      //console.log(result);
+      showComment(object.id);
+      usernameInput.value = '';
+      commentInput.value = '';
     }
 
 

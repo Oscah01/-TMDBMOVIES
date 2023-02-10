@@ -1,6 +1,5 @@
-const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c4663d1ba381b00aac6874230f49f551&page=3';
 const URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi';
-const commentsUrl = '/apps/G2GQQAue4EZGjaPnDQMx/comments/';
+const commentsUrl = '/apps/UHGxdjdJQHx0gaXtgTL4/comments/';
 
 export const addComment = async (id, user, comment) => {
     await fetch(`${URL}${commentsUrl}`,
@@ -15,12 +14,6 @@ export const addComment = async (id, user, comment) => {
                 comment,
             }),
         });
-};
-export const CommentCounter = (comment) => {
-  if (comment.length) {
-    const CounterCom = document.querySelector('.count--com');
-    CounterCom.innerHTML += `Comments (${comment.length})`;
-  }
 };
 
 export const getComments = async (incomingItemId) => {
