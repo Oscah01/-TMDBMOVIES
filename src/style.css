@@ -26,9 +26,11 @@ header {
 
 .list {
   display: flex;
-  gap: 40rem;
+  gap: 20rem;
   list-style: none;
-  font-size: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .lists {
@@ -61,22 +63,11 @@ header {
   color: pink;
 }
 
-.search {
-  background-color: transparent;
-  border: 2px solid var(--primary-color);
-  border-radius: 50px;
-  font-family: inherit;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  color: #fff;
-}
-
 .search::placeholder {
   color: #7378c5;
 }
 
 .search:focus {
-  outline: none;
   background-color: var(--primary-color);
 }
 
@@ -163,18 +154,16 @@ main {
 }
 
 #search {
-  margin-top: -30px;
-  margin-left: 6px;
+  margin-top: 10px;
   width: 100%;
   border: none;
-  outline: none;
   text-align: center;
   background: none;
   font-size: 20px;
   font-weight: 500;
-  pointer-events: none;
-  color: #0086b3;
-  text-shadow: 2px 2px 3px #2a93b6;
+  color: #11a9dc;
+  border-radius: 10px;
+  padding: 4px;
 }
 
 button:hover {
