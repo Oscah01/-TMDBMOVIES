@@ -326,6 +326,19 @@ button:hover {
   margin-top: 20px;
 }
 
+footer {
+  border-top: 1px #11a9dc;
+  border-bottom: 1px #11a9dc;
+  margin-top: 2rem;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: #fff;
+}  
+
+.footer-text {
+  padding: 1rem;
+}
 @keyframes popup {
   100% {
     transform: scale(1.5) rotate(-45deg);
