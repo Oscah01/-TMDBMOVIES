@@ -26,8 +26,7 @@ header {
 
 .list {
   display: flex;
-  gap: 40rem;
-  font-size: 20px;
+  gap: 20rem;
   list-style: none;
   font-size: 30px;
   cursor: pointer;
