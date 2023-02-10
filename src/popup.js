@@ -1,29 +1,29 @@
-import { IMG_PATH } from "./index.js";
-import { addComment, getComments } from "./comment-api.js";
+import { addComment, getComments } from './comment-api.js';
 
+const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
 const showComment = async (id) => {
   const result = await getComments(id);
   const commentSection = document.getElementById('show-comm');
 
   if (result.length > 0) {
     commentSection.innerHTML = `<h3>comments : (${result.length})</h3> <hr>`;
-    result.forEach(element => {
+    result.forEach((element) => {
       commentSection.innerHTML += `
       <p>* Date : ${element.creation_date} | ${element.username} Commented : ${element.comment}</p>
     `;
     });
   } else {
-  commentSection.innerHTML = '<h3>comments : (0)</h3>';
+    commentSection.innerHTML = '<h3>comments : (0)</h3>';
   }
-}  
+};
 
 const popupShow = (object) => {
-    const popupCard = document.createElement('li');
-    const container = document.querySelector('.popup');
-    container.innerHTML = '';
-    const imgPop = IMG_PATH + object.poster_path;
-    popupCard.classList.add('popup-card');
-    popupCard.innerHTML = `
+  const popupCard = document.createElement('li');
+  const container = document.querySelector('.popup');
+  container.innerHTML = '';
+  const imgPop = IMG_PATH + object.poster_path;
+  popupCard.classList.add('popup-card');
+  popupCard.innerHTML = `
     <div class="burger">X</div>
     <div class="pop--img">
       <img src="${imgPop}" alt="${object.title} img">
@@ -49,12 +49,11 @@ const popupShow = (object) => {
       </div>
     </div>
     `;
-    
 
-    container.appendChild(popupCard);
+  container.appendChild(popupCard);
 
-    const closeButtons = document.querySelector('.burger');
-    closeButtons.addEventListener('click', () => {
+  const closeButtons = document.querySelector('.burger');
+  closeButtons.addEventListener('click', () => {
     document.querySelector('.popup.active').classList.remove('active');
   });
 
@@ -65,19 +64,16 @@ const popupShow = (object) => {
   SubmitButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
-    if(usernameInput.value =='' || commentInput.value == ''){
+    if (usernameInput.value === '' || commentInput.value === '') {
       usernameInput.placeholder = 'Please fill your name';
       commentInput.placeholder = 'Please add your comment';
-    }else {
+    } else {
       await addComment(object.id, usernameInput.value, commentInput.value);
       showComment(object.id);
       usernameInput.value = '';
       commentInput.value = '';
     }
-
-
   });
-}
+};
 
 export default popupShow;
-
