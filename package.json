@@ -24,8 +24,10 @@
   },
   "homepage": "https://github.com/Oscah01/javascript-capstone#readme",
   "dependencies": {
+    "@babel/preset-env": "^7.20.2",
     "css": "^3.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest-environment-jsdom": "^29.4.2",
     "loader": "^2.1.1",
     "style-loader": "^3.3.1"
   },
